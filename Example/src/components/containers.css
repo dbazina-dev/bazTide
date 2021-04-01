@@ -1,0 +1,55 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    margin-top: 30px;
+}
+.first-grid-container {
+    display: grid;
+    grid-template-columns: 500px 1fr;
+    grid-gap: 70px;
+    margin-top: 50px;
+}
+label {
+    display: block;
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: right;
+    width: 450px;
+    line-height: 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+input {
+    height: 20px;
+    flex: 0 0 200px;
+    margin-left: 10px;
+}
+
+.customDatePickerWidth, 
+.customDatePickerWidth > div.react-datepicker-wrapper, 
+.customDatePickerWidth > div > div.react-datepicker__input-container
+.customDatePickerWidth > div > div.react-datepicker__input-container input {
+   width: 100%;
+}
+.submit-button{
+    display: block;
+    width: 100%;
+    padding: 14px 28px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 10px;
+    transition-duration: 0.4s;
+}
+.submit-button:hover{
+    background-color: #555555;
+    color: white;
+}
+.input-container{
+    margin-bottom: 50px;
+}
+.heading{
+    text-align: center;
+}
