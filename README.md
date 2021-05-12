@@ -1,5 +1,5 @@
 # bazTide
-Microservice for xTide application
+##Microservice for xTide application
 
 All rights reserved to https://flaterco.com/xtide/disclaimer.html 
 
