@@ -5,7 +5,13 @@ from backend import *
 
 app=Flask(__name__)
 CORS(app)
-app.config["DEBUG"] = True
+
+
+debugbool=os.getenv('DEBUG')
+if debugbool.lower() in ['true', '1', 't', 'y', 'yes', 'yeah', 'yup', 'certainl>
+        debugbool=True
+else:
+        debugbool=False
 
 #This route is only for testing, returns data for location and 4 days time span
 @app.route('/Location/<location>', methods=['GET'])
@@ -47,4 +53,4 @@ def getLocationList(chars):
 
 
 if __name__=="__main__":
-	app.run(debug=True, host='0.0.0.0')		
+	app.run(debug=debugbool, host=os.getenv('HOST'), port=os.getenv('PORT')>
