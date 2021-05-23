@@ -11,9 +11,9 @@
 docker pull domo123/baztide:restapi
 
 ## 2)Start docker container, on port 5000. That port is used for fetch request in React
-
+¸¸¸
 docker run -it -p 5000:5000 domo123/baztide:restapi
-
+¸¸¸
 ## 3)Pull image for REACT application
 
 docker pull domo123/baztide:react
