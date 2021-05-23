@@ -8,7 +8,7 @@ CORS(app)
 
 
 debugbool=os.getenv('DEBUG')
-if debugbool.lower() in ['true', '1', 't', 'y', 'yes', 'yeah', 'yup', 'certainl>
+if debugbool.lower() in ['true', '1', 't', 'y', 'yes', 'yeah', 'yup', 'certainly', 'uh-huh', 'da']:
         debugbool=True
 else:
         debugbool=False
