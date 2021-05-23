@@ -12,19 +12,19 @@ XTide and its documentation are maintained by David Flater (dave@flaterco.com).
 
 ## Guide for installing service from Docker hub.
 
-..*Pull image for REST API
+* Pull image for REST API
 
 ```docker pull domo123/baztide:restapi```
 
-## Start docker container, on port 5000. That port is used for fetch request in React
+* Start docker container, on port 5000. That port is used for fetch request in React
 
 ```docker run -it -p 5000:5000 domo123/baztide:restapi```
 
-## Pull image for REACT application
+* Pull image for REACT application
 
 ```docker pull domo123/baztide:react```
 
-## Start docker container, I used port 3000.
+* Start docker container, I used port 3000.
 
 ```docker run -it -p 3000:3000 domo123/baztide:react```
 
