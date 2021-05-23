@@ -31,7 +31,7 @@ XTide and its documentation are maintained by David Flater (dave@flaterco.com).
 
 ### Environment variables
 Inside dockerfile, You can find multiple enviroment variables.
-***HOST** - before initialzing container, You can define network interface on which service will be deployed.
-***PORT** - You can define on which PORT service will listen.
-***DEBUG** - debug mode. To turn it on use any of these values "true, 1, t, y, yes, yeah, yup, certainly, uh-huh, da". If You want to turn it off, use any other value.
+* **HOST** - before initialzing container, You can define network interface on which service will be deployed.
+* **PORT** - You can define on which PORT service will listen.
+* **DEBUG** - debug mode. To turn it on use any of these values "true, 1, t, y, yes, yeah, yup, certainly, uh-huh, da". If You want to turn it off, use any other value.
 *Now you can use full service, enjoy :)*
