@@ -1,4 +1,5 @@
 # bazTide - Microservice for xTide application
+**All rights reserved to https://flaterco.com/xtide/disclaimer.html** 
 
 ## What is xTide?
 [XTide](https://flaterco.com/xtide/) is a package that provides tide and current predictions in a wide variety of formats.  Graphs, text listings, and calendars can be generated, or a tide clock can be provided on your desktop. XTide can work with X-windows, plain text terminals, or the web.  This is accomplished with three separate programs:  the interactive interface (xtide), the non-interactive or command-line interface (tide), and the web interface (xttpd).
@@ -7,25 +8,23 @@ The algorithm that XTide uses to predict tides is the one used by the [National 
 
 XTide and its documentation are maintained by David Flater (dave@flaterco.com).
 
-**All rights reserved to https://flaterco.com/xtide/disclaimer.html** 
+## How to mount your own harmonis files?
 
-*App was built as wrapper around xTide application.*
+## Guide for installing service from Docker hub.
 
-**Guide for installing application from Docker hub.**
-
-## 1) Pull image for REST API
+..* Pull image for REST API
 
 ```docker pull domo123/baztide:restapi```
 
-## 2)Start docker container, on port 5000. That port is used for fetch request in React
+## Start docker container, on port 5000. That port is used for fetch request in React
 
 ```docker run -it -p 5000:5000 domo123/baztide:restapi```
 
-## 3)Pull image for REACT application
+## Pull image for REACT application
 
 ```docker pull domo123/baztide:react```
 
-## 4)Start docker container, I used port 3000.
+## Start docker container, I used port 3000.
 
 ```docker run -it -p 3000:3000 domo123/baztide:react```
 
