@@ -10,7 +10,9 @@ XTide and its documentation are maintained by David Flater (dave@flaterco.com).
 
 ## How to mount your own harmonics files?
 If you want to use Your own harmonic files, it can be done by mounting those files from host.
+
 ```docker run -it --mount type=bind, source=/tmp/someHarmonicfile.tcd,target=/usr/share/xtide/someHarmonicfile.tcd domo123/baztide:restapi```
+
 By default, there will be standard xtide harmonics files for United States. 
 
 ## Guide for installing service from Docker hub.
