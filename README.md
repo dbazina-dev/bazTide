@@ -36,4 +36,4 @@ Inside dockerfile, You can find multiple enviroment variables.
 * **DEBUG** - debug mode. To turn it on use any of these values "true, 1, t, y, yes, yeah, yup, certainly, uh-huh, da". If You want to turn it off, use any other value.
 
 ### Example folder
-In example folder, You will find React application. It is used as Graphical user interface, that sends requests to the API.
+In example folder, You will find *React application*. It is used as Graphical user interface, that sends requests to the API.
