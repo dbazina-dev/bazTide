@@ -24,8 +24,14 @@ XTide and its documentation are maintained by David Flater (dave@flaterco.com).
 
 ```docker pull domo123/baztide:react```
 
-* Start docker container, I used port 3000.
+* Start docker container, You can use port 3000.
 
 ```docker run -it -p 3000:3000 domo123/baztide:react```
+## Content of Github repository.
 
+### Environment variables
+Inside dockerfile, You can find multiple enviroment variables.
+**HOST** - before initialzing container, You can define network interface on which service will be deployed.
+**PORT** - You can define on which PORT service will listen.
+**DEBUG** - debug mode. To turn it on use any of these values "true, 1, t, y, yes, yeah, yup, certainly, uh-huh, da". If You want to turn it off, use any other value.
 *Now you can use full service, enjoy :)*
