@@ -12,7 +12,7 @@ XTide and its documentation are maintained by David Flater (dave@flaterco.com).
 
 ## Guide for installing service from Docker hub.
 
-..* Pull image for REST API
+..*Pull image for REST API
 
 ```docker pull domo123/baztide:restapi```
 
