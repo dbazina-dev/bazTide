@@ -53,4 +53,4 @@ def getLocationList(chars):
 
 
 if __name__=="__main__":
-	app.run(debug=debugbool, host=os.getenv('HOST'), port=os.getenv('PORT')>
+	app.run(debug=debugbool, host=os.getenv('HOST'), port=os.getenv('PORT'))
