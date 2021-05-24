@@ -76,12 +76,7 @@ def locationList(chars):
 			filteredList.append(listOfLocations[z])					#Appends locations that start with chars.
 
 	filteredList = list(dict.fromkeys(filteredList))						#Removes duplicates
-	if (len(chars)>=2):										#User-friendly. When deleting chars, to not return "previous" list of locations.
-		dataframe=pd.DataFrame(filteredList, columns=["Name"])
-	else:
-		filteredList.clear()
-		dataframe=pd.DataFrame(filteredList, columns=["Name"])
-	
+	dataframe=pd.DataFrame(filteredList, columns=["Name"])
 	result=dataframe.to_json(orient="records")
 	data=json.loads(result)
 	return data

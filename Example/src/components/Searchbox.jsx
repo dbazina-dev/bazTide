@@ -8,8 +8,8 @@ function SearchBox(props) {
     const [okay, setOkay] = useState(false);          //Boolean for status of server
 
     useEffect(() => {
-        if (chars.length >= 0) {                      
-          var locationListUrl=encodeURI(`http://127.0.0.1:5000/Location/Locationlist/${chars}`) //Encode url
+        if (chars.length >= 1) {                      
+          var locationListUrl=encodeURI(`http://127.0.0.1:5000/search/${chars}`) //Encode url
           fetch(locationListUrl)
           .then(function(response) {
             if (!response.ok) {                       //If response is not okay, throw error.

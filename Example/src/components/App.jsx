@@ -27,7 +27,7 @@ function App(){
         type:'info',                                                    //Standard for severity
     })
     function handleClick(event){
-        var tideUrl=encodeURI(`http://127.0.0.1:5000/Location/Tidedata?location=${location}&start=${fm(startDate,'yyyy-MM-dd kk:mm')}&end=${fm(endDate,'yyyy-MM-dd kk:mm')}`)
+        var tideUrl=encodeURI(`http://127.0.0.1:5000/data/${location}/tidedata?start=${fm(startDate,'yyyy-MM-dd kk:mm')}&end=${fm(endDate,'yyyy-MM-dd kk:mm')}`)
         fetch(tideUrl) //First fetch request onclick, used for retrieving tide data for location.
         .then(function(response) {
             if (!response.ok){
@@ -64,7 +64,7 @@ function App(){
             }
         });
         //Second fetch request onclick, used for retrieving information about location.
-        var locationUrl=encodeURI(`http://127.0.0.1:5000//Location/Metadata/${location}`)
+        var locationUrl=encodeURI(`http://127.0.0.1:5000//data/${location}/metadata`)
         fetch(locationUrl)
         .then(function(response) {
             if (!response.ok) {

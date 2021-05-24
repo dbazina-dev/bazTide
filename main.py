@@ -21,11 +21,10 @@ def getTideData(location):
 		abort(400, 'There is no data for requested parameters!')			#In case there is problem with response, return message and statuscode.
 	else:
 		return jsonify(data)								#Return json response if all is okay.
-		
+
 #This route is used for returning data for location and specified dates		
-@app.route('/Location/Tidedata', methods=['GET'])
-def getTideDataByDate():
-	location=request.args.get('location')							#Get parameters from url using requests
+@app.route('/data/<location>/tidedata', methods=['GET'])
+def getTideDataByDate(location):							#Get parameters from url using requests
 	start=request.args.get('start')
 	end=request.args.get('end')
 	data=dateDefined(location,start,end)				
@@ -37,7 +36,7 @@ def getTideDataByDate():
 		return jsonify(data)								#Return json response if all is okay
 		
 #This route is used for returing information about location.
-@app.route('/Location/Metadata/<location>', methods=['GET'])				
+@app.route('/data/<location>/metadata', methods=['GET'])				
 def getLocationData(location):
 	data=detailDefined(location)
 	if(len(data)==0):
@@ -46,7 +45,7 @@ def getLocationData(location):
 		return jsonify(data)
 		
 #This route is used for returning list of locations for searchbar
-@app.route('/Location/Locationlist/<chars>', methods=['GET'])
+@app.route('/search/<chars>', methods=['GET'])
 def getLocationList(chars):
 	data=locationList(chars)
 	return jsonify(data)
