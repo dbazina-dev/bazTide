@@ -14,14 +14,13 @@ else:
         debugbool=False
 
 #This route is only for testing, returns data for location and 4 days time span
-@app.route('/Location/<location>', methods=['GET'])
-def getTideData(location):
-	data=locationDefined(location)
-	if(len(data)==0):
-		abort(400, 'There is no data for requested parameters!')			#In case there is problem with response, return message and statuscode.
-	else:
-		return jsonify(data)								#Return json response if all is okay.
-
+@app.route('/')
+def welcome():
+        return """
+        <h1>Welcome to bazTide!</h1>
+        <p>This is REST API built around xTide application. You can try it out by switching URL to:</p>
+        <code><em>/data/Miami/metadata</em></code>
+        """
 #This route is used for returning data for location and specified dates		
 @app.route('/data/<location>/tidedata', methods=['GET'])
 def getTideDataByDate(location):							#Get parameters from url using requests
