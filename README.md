@@ -15,7 +15,7 @@ In this REST-API, I have declared 3 different routes that implement xtide functi
 
 ```/data/<location>/tidedata```
 
-If you want to fetch data within time period, you can define start date, end date or both of them.
+* *If you want to fetch data within time period, you can define start date, end date or both of them.*
 
 eg. ```/data/Miami/tidedata?start=2021-05-21 12:00&end=2021-05-22 12:00``` 
 
