@@ -8,6 +8,25 @@ The algorithm that XTide uses to predict tides is the one used by the [National 
 
 XTide and its documentation are maintained by David Flater (dave@flaterco.com).
 
+## Cheatsheet for REST-API.
+In this REST-API, I have declared 3 different routes that implement xtide functions.
+
+* First one is used for fetching tide data within time period. I've used HTTP (GET) method.
+
+```/data/<location>/tidedata```
+
+If you want to fetch data within time period, you can define start date, end date or both of them.
+
+eg. ```/data/Miami/tidedata?start=2021-05-21 12:00&end=2021-05-22 12:00``` 
+
+* Second one is used for fetching deatailed data about location. I've used HTTP (GET) method.
+
+```/data/<location>/metadata```
+
+* Third one is sued for fetching all locations available in xTide application. I've used HTTP (GET) method.
+
+```/search/<chars>```
+
 ## How to mount your own harmonics files?
 If you want to use Your own harmonic files, it can be done by mounting those files from host.
 
