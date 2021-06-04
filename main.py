@@ -13,7 +13,14 @@ if debugbool.lower() in ['true', '1', 't', 'y', 'yes', 'yeah', 'yup', 'certainly
 else:
         debugbool=False
 
-#This route is only for testing, returns data for location and 4 days time span
+# Setup error handling for this REST service
+@app.errorhandler(TideError)
+def handle_tide_error(error):
+	response=jsonify(error.to_dict())
+	response.status_code=error.status_code
+	return response
+
+# This route is only for testing, returns data for location and 4 days time span
 @app.route('/')
 def welcome():
         return """
@@ -21,34 +28,46 @@ def welcome():
         <p>This is REST API built around xTide application. You can try it out by switching URL to:</p>
         <code><em>/data/Miami/metadata</em></code>
         """
-#This route is used for returning data for location and specified dates		
+# This route is used for returning data for location and specified dates
 @app.route('/data/<location>/tidedata', methods=['GET'])
-def getTideDataByDate(location):							#Get parameters from url using requests
+def getTideDataByDate(location):
 	start=request.args.get('start')
 	end=request.args.get('end')
-	data=dateDefined(location,start,end)				
-	if(len(data)==0):
-		abort(400, 'There is no data for requested parameters!')			#In case there is problem with response, return message and statuscode.
-	elif(data=="No"):									#This is used for one location, that can't be encoded.
-		abort(404, 'There is no decode!')
-	else:
-		return jsonify(data)								#Return json response if all is okay
-		
-#This route is used for returing information about location.
-@app.route('/data/<location>/metadata', methods=['GET'])				
-def getLocationData(location):
-	data=detailDefined(location)
-	if(len(data)==0):
-		abort(400, 'There is no data for requested parameters!')
-	else:
+	try:
+		data=dateDefined(location,start,end)
+		logger.debug("Request has been successfully completed!")
 		return jsonify(data)
-		
-#This route is used for returning list of locations for searchbar
+	except TideError as error:
+		raise
+	except Exception as error:
+		logger.exception(str(error))
+		raise TideError("Unknown error!",status_code=400)
+# This route is used for returing information about location.
+@app.route('/data/<location>/metadata', methods=['GET'])
+def getLocationData(location):
+	try:
+		data=detailDefined(location)
+		logger.debug("Request has been successfully completed!")
+		return jsonify(data)
+	except TideError as error:
+		logger.warning(str(error))
+		raise
+	except Exception as error:
+		logger.exception(str(error))
+		raise TideError("Unknown error!",status_code=400)
+# This route is used for returning list of locations for searchbar
 @app.route('/search/<chars>', methods=['GET'])
 def getLocationList(chars):
-	data=locationList(chars)
-	return jsonify(data)
-
+	try:
+       		data=locationList(chars)
+       		logger.debug("Request has been successfully completed!")
+       		return jsonify(data)
+	except TideError as error:
+		logger.warning(str(error))
+		raise
+	except Exception as error:
+		logger.exception(str(error))
+		raise TideError("Unknown error!",status_code=400)
 
 if __name__=="__main__":
 	app.run(debug=debugbool, host=os.getenv('HOST'), port=os.getenv('PORT'))
