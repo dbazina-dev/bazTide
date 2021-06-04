@@ -6,7 +6,7 @@ RUN touch /root/.disableXTidedisclaimer
     
 RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata locales && locale-gen en_US.UTF-8
 
-ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8' HOST='0.0.0.0' PORT=5000 DEBUG=true
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8' HOST='0.0.0.0' PORT=5000 DEBUG=true LOG="INFO"
 
 WORKDIR /app
 
