@@ -28,40 +28,28 @@ function App(){
     })
     function handleClick(event){
         var tideUrl=encodeURI(`http://127.0.0.1:5000/data/${location}/tidedata?start=${fm(startDate,'yyyy-MM-dd kk:mm')}&end=${fm(endDate,'yyyy-MM-dd kk:mm')}`)
-        fetch(tideUrl) //First fetch request onclick, used for retrieving tide data for location.
-        .then(function(response) {
-            if (!response.ok){
-                if(response.status===404){              //Special error, for one problematic location
-                    throw new Error("Decode-Error");
-                }
-                else{
-                    throw new Error(response.status);
-                } 
+        fetch(tideUrl).then((response)=> {
+            if (response.ok){
+                return response.json()
+            } 
+            else{
+                response.json().then(data => {
+                    throw new Error(data.message)
+                  })
+                .catch((error)=>{
+                    setResponseStatus(oldState=> ({ ...oldState, shouldOpen:true, networkError: false, isError: true, message: error.message, type:'error'}))
+                })                 
             }
-            return response;})
-        .then(response => response.json())
+        })
         .then((data) => {
             //Updates data to variable that is used for graph.
             setGraphData(data)
             //Updates status of response
-            setResponseStatus(oldState => ({ ...oldState, shouldOpen:true, networkError: true, isError: false, message:'Data was fetched succesfuly!', type:'success'}));
-            
+            setResponseStatus(oldState => ({ ...oldState, shouldOpen:true, networkError: true, isError: false, message:'Data was fetched succesfuly!', type:'success'}));   
         })
         .catch((error) => {
             //Checks error message, return error if server is offline.
-            if((error.message==="NetworkError when attempting to fetch resource.") || (error.message==="Failed to fetch")){
-                setResponseStatus(oldState => ({ ...oldState, networkError: true, message:'Server is offline!', type:'warning'}));
-            }
-            else{
-                //Checks error message, return decode error.
-                if(error.message==="Decode-Error"){
-                    setResponseStatus(oldState=> ({ ...oldState, shouldOpen:true, networkError: false, isError: true, message:`There is problem with encoding Location: ${location},`, type:'error'}))
-                }
-                else{
-                    //Any other error.
-                    setResponseStatus(oldState=> ({ ...oldState, shouldOpen:true, networkError: false, isError: true, message:`There is no data for: Location: ${location}, StartDate: ${fm(startDate,'yyyy-MM-dd kk:mm')}, EndDate: ${fm(endDate,'yyyy-MM-dd kk:mm')}`, type:'error'}))
-                }
-            }
+            setResponseStatus(oldState => ({ ...oldState, networkError: true, message:'Server is offline!', type:'warning'}));
         });
         //Second fetch request onclick, used for retrieving information about location.
         var locationUrl=encodeURI(`http://127.0.0.1:5000//data/${location}/metadata`)
