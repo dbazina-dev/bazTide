@@ -8,10 +8,11 @@ logbool=os.getenv('LOG')
 if logbool.upper() not in ['DEBUG','INFO','WARNING','ERROR','CRITICAL']:
         logbool="INFO"
 
+
 # Logger used for printing information about processes inside application. Application also used default Flask/Werkzeug logger.
 logger=logging.getLogger('tide_logger')
 logging.basicConfig(
-      level=logging.logbool,											# Log level, it could be changed by swaping ENV variable "LOG".
+      level=logbool,											# Log level, it could be changed by swaping ENV variable "LOG".
       format='%(asctime)s %(levelname)-8s %(message)s [%(name)s : %(module)s : %(funcName)s : %(lineno)d]',
       datefmt='%Y-%m-%d %H:%M:%S')
 
