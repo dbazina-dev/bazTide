@@ -30,7 +30,7 @@ class TideError(Exception):
 
 # Function for obtaining tide data within time period.
 def dateDefined(location,start,end):
-	if("Rincon Point" in location):									# This location can't be decoded in CSV format.
+	if("rincon p" in location.lower):									# This location can't be decoded in CSV format.
 		logger.info("Requested location can't be decoded. Location: "+location)
 		raise TideError("Requested location can't be decoded!",status_code=400)
 	elif(start!=None and end==None):									# Branching depending on provided parameters. xTide function is called based on params.												# If end date is none, set it as empty string. Used for concatenation.
