@@ -30,7 +30,7 @@ eg. ```/data/Miami/tidedata?start=2021-05-21 12:00&end=2021-05-22 12:00```
 ## How to mount your own harmonics files?
 If you want to use Your own harmonic files, it can be done by mounting those files from host.
 
-```docker run -it --mount type=bind, source=/tmp/someHarmonicfile.tcd,target=/usr/share/xtide/someHarmonicfile.tcd domo123/baztide:restapi```
+```docker run -it --mount type=bind,source=/tmp/someHarmonicfile.tcd,target=/usr/share/xtide/someHarmonicfile.tcd domo123/baztide:restapi```
 
 By default, there will be standard xtide harmonics files for United States. 
 
