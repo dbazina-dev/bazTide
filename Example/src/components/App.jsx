@@ -53,13 +53,19 @@ function App(){
         });
         //Second fetch request onclick, used for retrieving information about location.
         var locationUrl=encodeURI(`http://127.0.0.1:5000//data/${location}/metadata`)
-        fetch(locationUrl)
-        .then(function(response) {
-            if (!response.ok) {
-                throw new Error(response.statusText);
+        fetch(locationUrl).then((response)=> {
+            if (response.ok){
+                return response.json()
+            } 
+            else{
+                response.json().then(data => {
+                    throw new Error(data.message)
+                  })
+                .catch((error)=>{
+                    setResponseStatus(oldState => ({ ...oldState, locationError: true, locationMessage:error.message}));
+                })                 
             }
-            return response;})
-        .then(response => response.json())
+        })
         .then((data) => {
             //Updates status of response
             setResponseStatus(oldState => ({ ...oldState, networkError: false, locationError: false,}));
@@ -67,14 +73,7 @@ function App(){
             setLocationData(data)
         })
         .catch((error) => {
-            if((error.message==="NetworkError when attempting to fetch resource.") || (error.message==="Failed to fetch")){
-                //Checks error message, return error if server is offline.
-                setResponseStatus(oldState => ({ ...oldState, networkError: true, message:'Server is offline!', type:'warning'}));
-            }
-            else{
-                //Any other error.
-                setResponseStatus(oldState => ({ ...oldState, locationError: true, locationMessage:"There are no details for provided location"}));
-            }
+            setResponseStatus(oldState => ({ ...oldState, networkError: true, message:'Server is offline!', type:'warning'}));
         });
         setOpen(true)
         event.preventDefault() //Prevents page from loading, because of submit function.
