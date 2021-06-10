@@ -23,7 +23,7 @@ eg. ```/data/Miami/tidedata?start=2021-05-21 12:00&end=2021-05-22 12:00```
 
 ```/data/<location>/metadata```
 
-* Third one is sued for fetching all locations available in xTide application. I've used HTTP (GET) method.
+* Third one is used for fetching all locations available in xTide application. I've used HTTP (GET) method.
 
 ```/search/<chars>```
 
