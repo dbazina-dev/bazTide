@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Datepicker from "react-datepicker";
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import {format as fm} from "date-fns"
+import {format as fm,subDays, addDays} from "date-fns"
 import Graph from "./Graph";
 import Table from "./Table";
 import SearchBox from "./Searchbox";
@@ -27,7 +27,7 @@ function App(){
         type:'info',                                                    //Standard for severity
     })
     function handleClick(event){
-        var tideUrl=encodeURI(`http://127.0.0.1:5000/data/${location}/tidedata?start=${fm(startDate,'yyyy-MM-dd kk:mm')}&end=${fm(endDate,'yyyy-MM-dd kk:mm')}`)
+        var tideUrl=encodeURI(`http://127.0.0.1:5000/data/${location}/tidedata?start=${fm(startDate,'yyyy-MM-dd HH:mm')}&end=${fm(endDate,'yyyy-MM-dd HH:mm')}`)
         fetch(tideUrl).then((response)=> {
             if (response.ok){
                 return response.json()
@@ -114,7 +114,7 @@ function App(){
                         <div className="customDatePickerWidth">
                             {/* Datepicker for starting date */}
                             <label>
-                                Set starting date:<Datepicker className="input-field" selected={startDate} onChange={date => setStartDate(date)} showTimeSelect dateFormat="yyyy-MM-dd HH:mm" required="reqired" />
+                                Set starting date:<Datepicker className="input-field" selected={startDate} onChange={date => setStartDate(date)} showTimeSelect dateFormat="yyyy-MM-dd HH:mm" required="reqired" minDate={subDays(new Date(), 15)} maxDate={addDays(new Date(), 15)} />
                             </label>
                         </div>       
                     </div>
@@ -122,7 +122,7 @@ function App(){
                         <div className="customDatePickerWidth">
                             {/* Datepicker for end date */}
                             <label>
-                                Set ending date:<Datepicker className="input-field" selected={endDate} onChange={date => setEndDate(date)} showTimeSelect dateFormat="yyyy-MM-dd HH:mm" required="reqired" />
+                                Set ending date:<Datepicker className="input-field" selected={endDate} onChange={date => setEndDate(date)} showTimeSelect dateFormat="yyyy-MM-dd HH:mm" required="reqired" minDate={subDays(new Date(), 15)} maxDate={addDays(new Date(), 15)} />
                             </label>
                         </div> 
                     </div>
