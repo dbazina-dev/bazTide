@@ -78,7 +78,7 @@ def dateDefined(location,start,end):
 		return data
 	elif(stdout=="" and stderr=="XTide Error:  STATION_NOT_FOUND"):					# ERROR HANDLING!
 		logger.warning("Requested station was not found in harmonic files. Station: " + location)
-		raise TideError("Requsted location is not defined in harmonic files!",status_code=400)		# Stations that is not defined in harmonic files.
+		raise TideError("Requested location is not defined in harmonic files!",status_code=400)		# Stations that is not defined in harmonic files.
 	elif(stdout=="" and stderr==""):
 		if(start==None):
 			logger.warning("There is no data within time period. End: "+ end)
@@ -126,7 +126,7 @@ def detailDefined(location):
 		data=dict(s.split('#') for s in stdout)                                                 	# Array to dicty, delimiter --> #.
 		return data
 	elif(stdout=="" and stderr=="XTide Error:  STATION_NOT_FOUND"):					# ERROR HANDLING! 
-		raise TideError("Requsted location is not defined in harmonic files!",status_code=400)
+		raise TideError("Requested location is not defined in harmonic files!",status_code=400)
 	elif(stdout=="" and stderr=="XTide Fatal Error:  BAD_OR_AMBIGUOUS_COMMAND_LINE"):
                 raise TideError("Command line format is not valid. Command line is used to fetch data from xtide!", status_code=400)
 	elif(stdout=="" and stderr=="XTide Fatal Error:  NO_HFILE_IN_PATH"):
