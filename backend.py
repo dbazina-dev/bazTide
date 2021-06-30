@@ -95,6 +95,14 @@ def dateDefined(location,start,end):
 		else:
 			logger.warning("Date format is not valid. Start: " + start +". End: "+ end)
 		raise TideError("Date format is not valid! It should look like: YYYY-MM-DD hh:mm.", status_code=400)
+	elif(stdout=="" and stderr=="XTide Fatal Error:  MKTIME_FAILED"):
+		if(start==None):
+			logger.warning("Date format is not valid. End: "+ end)
+		elif(end==None):
+			logger.warning("Date format is not valid. Start: " + start)
+		else:
+			logger.warning("Date format is not valid. Start: " + start +". End: "+ end)
+		raise TideError("Date format is not valid! It should look like: YYYY-MM-DD hh:mm.", status_code=400)
 	elif(stdout=="" and stderr=="XTide Fatal Error:  BAD_OR_AMBIGUOUS_COMMAND_LINE"):
 		logger.warning("Bad format of command line that is used to fetch data from xtide.")
 		raise TideError("Command line format is not valid. Command line is used to fetch data from xtide!", status_code=400)	# Broken command for fetching data from xTide.
